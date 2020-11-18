@@ -1,0 +1,6 @@
+tqdm
+bilili
+requests
+opencv-python
+scipy
+
