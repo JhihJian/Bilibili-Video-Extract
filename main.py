@@ -39,14 +39,14 @@ if __name__ == '__main__':
     av_new_list=rank_info.get_rank_videos()
     for av in av_new_list:
         if av not in av_set:
-            base_dir=download_tool.download_video(av,target_dir)
+            base_dir=download_tool.download_video(str(av),target_dir)
             video_path_list=get_video_path(base_dir)
             # 先只处理一个
             print(video_path_list[0])
-            frames_dir_path=os.path.join(base_dir,av)
+            frames_dir_path=os.path.join(base_dir,str(av))
             keyframes_extract.extract(video_path_list[0],frames_dir_path)
             av_set.add(av)
-            av_store.append_av_set(av,data_path)
+            av_store.append_av_set(str(av),data_path)
 
     print_hi('PyCharm')
 
