@@ -80,10 +80,6 @@ def extract(video_path,output_dir):
     print("耗时：",end_time - start_time,'s')
     print("读取帧数:",i)
     print("输出帧数:",num)
-if __name__ == "__main__":
-    video_path = "K:/3-WorkSpace/2-Python-Projects/PaddlePaddle-OCR/Docker/1分钟 制作 相恋时钟壁纸(Wallpaper Engine) - bilibili/Videos/1分钟 制作 相恋时钟.mp4"
-    #video_path="C:/Users/jhihjian/PycharmProjects/Bilibili-Download/夏洛克死而复生！却惨遭华生「家暴」！9.0分悬疑神剧《神探夏洛克》（07／S3E1） - bilibili/Videos/《神探夏洛克》p7.mp4";
-    frame_dir="K:/3-WorkSpace/2-Python-Projects/PaddlePaddle-OCR/Docker/1分钟 制作 相恋时钟壁纸(Wallpaper Engine) - bilibili/key_frames"
-    extract(video_path,frame_dir)
+
 
 
