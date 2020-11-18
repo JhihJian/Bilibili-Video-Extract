@@ -2,14 +2,9 @@ FROM paddleocr:cuda9.0-cudnn7
 
 ARG service_home="/opt/PaddleOCR"
 # 测试用
-# ARG det_model_url="https://paddleocr.bj.bcebos.com/20-09-22/mobile/det/ch_ppocr_mobile_v1.1_det_infer.tar"
-# ARG rec_model_url="https://paddleocr.bj.bcebos.com/20-09-22/mobile/rec/ch_ppocr_mobile_v1.1_rec_infer.tar"
-# ARG cls_model_url="https://paddleocr.bj.bcebos.com/20-09-22/cls/ch_ppocr_mobile_v1.1_cls_infer.tar"
-
-ARG det_model_url="https://paddleocr.bj.bcebos.com/20-09-22/server/det/ch_ppocr_server_v1.1_det_train.tar"
-ARG rec_model_url="https://paddleocr.bj.bcebos.com/20-09-22/server/rec/ch_ppocr_server_v1.1_rec_pre.tar"
-ARG cls_model_url="https://paddleocr.bj.bcebos.com/20-09-22/cls/ch_ppocr_mobile_v1.1_cls_train.tar"
-
+ARG det_model_url="https://paddleocr.bj.bcebos.com/20-09-22/mobile/det/ch_ppocr_mobile_v1.1_det_infer.tar"
+ARG rec_model_url="https://paddleocr.bj.bcebos.com/20-09-22/mobile/rec/ch_ppocr_mobile_v1.1_rec_infer.tar"
+ARG cls_model_url="https://paddleocr.bj.bcebos.com/20-09-22/cls/ch_ppocr_mobile_v1.1_cls_infer.tar"
 
 ARG pypi_mirror_url="https://mirror.baidu.com/pypi/simple"
 ARG volume_dir="/opt/PaddleOCR/ocr-files"
@@ -40,8 +35,9 @@ EXPOSE 9111
 
 VOLUME "$volume_dir"
 
+# 构建运行说明
 # docker build -t paddleocr-jj:1.0.0 -f dockerFile .
 #  docker run --name jjocr -v /opt/ocr-docker/ocr-files:/opt/PaddleOCR/ocr-files --network=host -it paddleocr-jj:1.0.0 /bin/bash
-# python3 /opt/PaddleOCR/tools/infer/predict_system.py --image_dir="./doc/imgs/11.jpg" --det_model_dir="./inference/det_model/"  --rec_model_dir="./inference/rec_model/" --cls_model_dir="./inference/cls_model/" --use_angle_cls=True --use_space_char=True
+#  nohup  python3 /opt/PaddleOCR/ocr_main.py &
 # ctrl+P+Q可退出docker 重新进入 docker container exec -it jjocr /bin/bash
 
