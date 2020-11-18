@@ -33,7 +33,7 @@ def get_video_path(base_dir):
             result.append(os.path.join(videos_dir, file))
     return result
 def frames_ocr_process(frames_dir_path):
-    shutil.copytree(frames_dir_path,ocr_input_dir)
+    shutil.copytree(frames_dir_path,os.path.join(ocr_input_dir,os.path.basename(frames_dir_path)))
 if __name__ == '__main__':
     av_set=av_store.load_av_set(data_path)
     av_new_list=rank_info.get_rank_videos()
@@ -45,6 +45,7 @@ if __name__ == '__main__':
             print(video_path_list[0])
             frames_dir_path=os.path.join(base_dir,str(av))
             keyframes_extract.extract(video_path_list[0],frames_dir_path)
+            frames_ocr_process(frames_dir_path)
             av_set.add(av)
             av_store.append_av_set(str(av),data_path)
 
