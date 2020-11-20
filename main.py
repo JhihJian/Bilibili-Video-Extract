@@ -5,6 +5,7 @@ import rank_info
 import  av_store
 import os
 import shutil
+import time
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
@@ -48,6 +49,7 @@ if __name__ == '__main__':
             frames_ocr_process(frames_dir_path)
             av_set.add(av)
             av_store.append_av_set(str(av),data_path)
+            time.sleep(2)
 
     print_hi('PyCharm')
 
