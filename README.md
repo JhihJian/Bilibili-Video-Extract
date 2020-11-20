@@ -15,7 +15,7 @@ docker build -t paddleocr-jj:1.0.0 -f dockerFile .
 docker run --name jjocr -v /opt/ocr-docker/ocr-files:/opt/PaddleOCR/ocr-files \
 --network=host -it paddleocr-jj:1.0.0 /bin/bash
 
-nohup python3 /opt/PaddleOCR/ocr_main.py &
+python3 /opt/PaddleOCR/ocr_main.py
 
 ctrl+P+Q
 
@@ -26,8 +26,9 @@ docker build -t bili-extract:1.0.0 -f dockerFile .
 docker run --name bili -v /opt/ocr-docker/ocr-files:/opt/ocr-files \
 --network=host -it bili-extract:1.0.0 /bin/bash
 
-python3 /opt/Bilibili-Video-Extract/main.py >extract.log &
+python3 /opt/Bilibili-Video-Extract/main.py 
 
+ctrl+P+Q
 ``` 
 
 辅助手段
