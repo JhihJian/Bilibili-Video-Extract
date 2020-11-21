@@ -1,5 +1,5 @@
 import os
-data_path=r"store.txt"
+data_path=r"av_set.txt"
 def load_av_set(store_path=data_path):
     if not os.path.exists(store_path):
         return set()
@@ -14,9 +14,11 @@ def clear_store(store_path=data_path):
     if os.path.exists(store_path):
         os.remove(store_path)
 if __name__ == '__main__':
-    test=["abcd","1234","efgh","5678","1234"]
-    for st in test:
-        append_av_set(st)
+    test=[585337686]
     verify_test=load_av_set()
-    print(verify_test)
-    clear_store()
+    print('already download av size:' + str(len(verify_test)))
+    for av in test:
+        if str(av) not in verify_test:
+            print("ok")
+        else:
+            print("already download av "+str(av)+",jump it")

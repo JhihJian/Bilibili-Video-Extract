@@ -37,9 +37,10 @@ def frames_ocr_process(frames_dir_path):
     shutil.copytree(frames_dir_path,os.path.join(ocr_input_dir,os.path.basename(frames_dir_path)))
 if __name__ == '__main__':
     av_set=av_store.load_av_set(data_path)
+    print('already download av size:' + str(len(av_set)))
     av_new_list=rank_info.get_rank_videos()
     for av in av_new_list:
-        if av not in av_set:
+        if str(av) not in av_set:
             base_dir=download_tool.download_video(str(av),target_dir)
             video_path_list=get_video_path(base_dir)
             # 先只处理一个
@@ -49,8 +50,10 @@ if __name__ == '__main__':
             frames_ocr_process(frames_dir_path)
             av_set.add(av)
             av_store.append_av_set(str(av),data_path)
+            shutil.rmtree(base_dir)
             time.sleep(2)
-
+        else:
+            print("already download av "+str(av)+",jump it")
     print_hi('PyCharm')
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/

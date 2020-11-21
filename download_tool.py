@@ -88,7 +88,7 @@ def download_video(av,target_dir=r""):
     config_dir=target_dir      # 下载目录
     config_quality=74   # [120, 116, 112, 80, 74, 64, 32, 16] 视频清晰度 120:4K, 116:1080P60, 112:1080P+, 80:1080P, 74:720P60, 64:720P, 32:480P, 16:360P"
     config_threads=16   #最大下载线程数
-    config_episodes="^~$"   #选集
+    config_episodes="^~^"   #选集
     config_overwrite="store_true"   #强制覆盖已下载视频
     config_cookies=None   #输入 cookies
     config_confirm="store_true"   # 跳过下载询问
@@ -438,4 +438,4 @@ def download_video(av,target_dir=r""):
     return base_dir
 
 if __name__ == "__main__":
-    download_video("https://www.bilibili.com/video/BV1nf4y1q7vQ")
+    download_video("29971113")
