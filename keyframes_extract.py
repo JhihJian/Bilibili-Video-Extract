@@ -3,7 +3,7 @@ from scipy.stats.stats import  pearsonr
 import time
 import os
 from tqdm import tqdm,trange
-
+import numpy as np
 # 相关性阈值
 THREADHOLD = 0.99
 # 裁剪高度
@@ -56,6 +56,8 @@ def extract(video_path,output_dir):
     i = 0
     #计数要保存的帧数
     num = 0
+    black_num=0;
+    empty_num=0;
     # 间隔数
     interval_count = 0
     success, frame = cap.read()
@@ -65,6 +67,15 @@ def extract(video_path,output_dir):
         if interval_count>=fps:
             interval_count=0
             frame_time = frame[height:,:,:]
+            # 不确定是否有用,检查是否为 empty
+            if frame == None:
+                empty_num+=1;
+                continue
+            # 检查是否 "all black"
+            if np.sum(frame) == 0:
+                black_num+=1;
+                continue
+            # 报错 (-215:Assertion failed) !_src.empty() in function 'cvtColor'
             curr_frame = cv2.cvtColor(frame_time, cv2.COLOR_BGR2LUV)
             if is_diffent_frame(curr_frame,prev_frame):
                 num += 1
@@ -80,6 +91,8 @@ def extract(video_path,output_dir):
     print("耗时：",end_time - start_time,'s')
     print("读取帧数:",i)
     print("输出帧数:",num)
+    print("empty帧数:",empty_num)
+    print("black帧数:",black_num)
 
 
 
