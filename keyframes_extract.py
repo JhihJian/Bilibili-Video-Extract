@@ -67,12 +67,8 @@ def extract(video_path,output_dir):
         if interval_count>=fps:
             interval_count=0
             frame_time = frame[height:,:,:]
-            # 不确定是否有用,检查是否为 empty
-            if frame == None:
-                empty_num+=1;
-                continue
             # 检查是否 "all black"
-            if np.sum(frame) == 0:
+            if np.sum(frame_time) == 0:
                 black_num+=1;
                 continue
             # 报错 (-215:Assertion failed) !_src.empty() in function 'cvtColor'
@@ -96,3 +92,7 @@ def extract(video_path,output_dir):
 
 
 
+if __name__ == '__main__':
+    v_path="C:/Users/jhihjian/PycharmProjects/Bilibili-Video-Extract/797860601/Videos/中国传统色-APP版.mp4";
+    o_path="C:/Users/jhihjian/PycharmProjects/Bilibili-Video-Extract/797860601/frames";
+    extract(v_path,o_path)

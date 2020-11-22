@@ -51,6 +51,7 @@ if __name__ == '__main__':
             av_set.add(av)
             av_store.append_av_set(str(av),data_path)
             shutil.rmtree(base_dir)
+            print(base_dir+ "has been delete")
             time.sleep(2)
         else:
             print("already download av "+str(av)+",jump it")
