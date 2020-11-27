@@ -23,7 +23,7 @@ cd ../DockerFile
 
 docker build -t bili-extract:1.0.0 -f dockerFile .
 
-docker run --name bili -v /opt/ocr-docker/ocr-files:/opt/ocr-files \
+docker run --name bili -v /opt/video_download:/opt/video_download \
 --network=host -it bili-extract:1.0.0 /bin/bash
 
 python3 /opt/Bilibili-Video-Extract/main.py 

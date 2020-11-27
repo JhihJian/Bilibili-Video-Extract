@@ -28,7 +28,7 @@ RUN mkdir -p "$volume_dir"
 VOLUME "$volume_dir"
 
 # docker build -t bili-extract:1.0.0 -f dockerFile .
-# docker run --name bili -v /opt/ocr-docker/ocr-files:/opt/ocr-files --network=host -it bili-extract:1.0.0 /bin/bash
+# docker run --name bili -v /opt/video_download:/opt/video_download --network=host -it bili-extract:1.0.0 /bin/bash
 # ctrl+P+Q可退出docker  
 # 重新进入 docker container exec -it bili /bin/bash
 
