@@ -1,6 +1,5 @@
 # This is a sample Python script.
 import download_tool
-import keyframes_extract
 import rank_info
 import  av_store
 import os
@@ -10,6 +9,7 @@ import ctypes
 import os
 import platform
 import sys
+import comments_download
 
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
@@ -56,22 +56,25 @@ if __name__ == '__main__':
     print('already download av size:' + str(len(av_set)))
     av_new_list=rank_info.get_rank_videos()
     for av in av_new_list:
-        while(get_free_space_gb(target_dir) < 1000):
+        while(get_free_space_gb(target_dir) < 1):
             print("free space just:" + str(get_free_space_gb(target_dir)) + " gb,wait clean")
             time.sleep(4)
 
         if str(av) not in av_set:
+
             base_dir=download_tool.download_video(str(av),target_dir)
             video_path_list=get_video_path(base_dir)
             # 先只处理一个
             print(video_path_list[0])
-            frames_dir_path=os.path.join(base_dir,str(av))
+            # frames_dir_path=os.path.join(base_dir,str(av))
+            # 下载评论
+            comments_download.SpiderComment(av)
             #keyframes_extract.extract(video_path_list[0],frames_dir_path)
             #frames_ocr_process(frames_dir_path)
             av_set.add(av)
             av_store.append_av_set(str(av),data_path)
             # shutil.rmtree(base_dir)
-            print(base_dir+ "has been delete")
+            # print(base_dir+ "has been delete")
             time.sleep(2)
         else:
             print("already download av "+str(av)+",jump it")

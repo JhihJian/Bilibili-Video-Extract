@@ -4,6 +4,18 @@
 ### 部署方案
 完整流程
 ```
+# redis 的docekr 安装
+
+docker pull redis:latest
+
+docker run --name redis -d -p 6379:6379 redis redis-server --requirepass "password"
+
+# 动态ip代理池
+
+docker run --env DB_CONN=redis://:password@centos.jh:6379/0 -p 5010:5010 jhao104/proxy_pool:latest
+
+
+
 mkdir -p /opt/ocr-docker/ocr-files
 
 git clone https://github.com/JhihJian/Bilibili-Video-Extract.git
@@ -29,6 +41,9 @@ docker run --name bili -v /opt/video_download:/opt/video_download \
 python3 /opt/Bilibili-Video-Extract/main.py 
 
 ctrl+P+Q
+
+
+
 ``` 
 
 辅助手段
