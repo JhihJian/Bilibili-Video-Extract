@@ -16,9 +16,9 @@ def divide(thread_i_di):
     db = pymysql.connect(user='biliu', password='123456',
                          host='centos.jh',
                          database='bili')
-    for j in range(0, total//thread):
+    for j in range(0, total//threadNum):
         #print("j:{}, i:{}. ".format(j, i+1))
-        pageNumber = j*thread + (thread_i_di + 1)
+        pageNumber = j*threadNum + (thread_i_di + 1)
         commitUrl = "https://api.bilibili.com/x/v2/reply?&pn=" + str(pageNumber) + "&type=1&oid=" + str(avId)
         run(commitUrl,db)
         print("sprider has run {}.".format(pageNumber))
@@ -232,11 +232,18 @@ def getThreadCount(total,max=6):
         return max
     else:
         return total//10
-
+total=1
+threadNum=1
+avId=-1
 # 抓取视频id
-def SpiderComment(avId):
+def SpiderComment(videoId):
+    #TODO 这里有点丑陋，定义全局变量是危险的做法
+    global avId
+    global threadNum
+    global total
+    avId=videoId
     time0 = time.time()
-
+    # MIN_COMMENT_LENGTH=20
     # 评论爬虫 数据库名
     comDataBaseName = "bili"
     # 评论爬虫 表名
@@ -245,13 +252,13 @@ def SpiderComment(avId):
     total = getTotal(avId)
 
     # 线程
-    thread = getThreadCount(total)
-    logging.info("视频id:" + str(avId) + ",页面数量:" + str(total) + "线程:" + str(thread))
+    threadNum = getThreadCount(total)
+    logging.info("视频id:" + str(avId) + ",页面数量:" + str(total) + "线程:" + str(threadNum))
     thread_i = [j
-                for j in range(0, thread)
+                for j in range(0, threadNum)
                 ]
 
-    pool = ThreadPool(thread)
+    pool = ThreadPool(threadNum)
     pool.map(divide, thread_i)
 
     pool.close()
