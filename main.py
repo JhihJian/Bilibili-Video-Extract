@@ -57,7 +57,9 @@ def create_message(av,path):
 
 if __name__ == '__main__':
     # mq 过程
-    connection = pika.BlockingConnection(pika.URLParameters('amqp://biliu:123456@centos.jh:5672'))
+    param=pika.URLParameters('amqp://biliu:123456@centos.jh:5672')
+    param._heartbeat=0
+    connection = pika.BlockingConnection(param)
     video_queue_name="videoPathQueue"
     chat_queue_name="chatPathQueue"
     video_channel = connection.channel()
@@ -70,8 +72,8 @@ if __name__ == '__main__':
     logging.info('already download av size:' + str(len(av_set)))
     av_new_list=rank_info.get_rank_videos()
     for av in av_new_list:
-        while(get_free_space_gb(target_dir) < 1):
-            logging.info("free space just:" + str(get_free_space_gb(target_dir)) + " gb,wait clean")
+        while(get_free_space_gb(target_dir) < 5):
+            print("free space just:" + str(get_free_space_gb(target_dir)) + " gb,wait clean")
             time.sleep(4)
 
         if str(av) not in av_set:
