@@ -242,6 +242,9 @@ def getThreadCount(total,max=6):
 total=1
 threadNum=1
 avId=-1
+comTableName = "bili_comment"
+
+
 # 抓取视频id
 def SpiderComment(videoId):
     #TODO 这里有点丑陋，定义全局变量是危险的做法
@@ -254,7 +257,6 @@ def SpiderComment(videoId):
     # 评论爬虫 数据库名
     comDataBaseName = "bili"
     # 评论爬虫 表名
-    comTableName = "bili_comment"
     # 抓取页面数量
     total = getTotal(avId)
 
@@ -276,5 +278,6 @@ def SpiderComment(videoId):
 
 
 
-
+if __name__ == '__main__':
+    SpiderComment(713028258)
 # https://github.com/Fyzjym/Spider-BiliComUsr
