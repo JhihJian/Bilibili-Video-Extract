@@ -211,17 +211,22 @@ def checkMid(mid,db):
         db.rollback()
 
 def getTotal(avId,max=100):
-    baseUrl="https://api.bilibili.com/x/v2/reply?&type=1&oid="+str(avId)
-    res=proxy.proxy_get(baseUrl)
-    jsonDict=json.loads(res.text)
-    page=jsonDict['data']['page']
-    count=int(page['count'])
-    size=int(page['size'])
-    result=count/size+1
-    if result < max:
-        return int(result)
-    else:
-        return max
+    try:
+        baseUrl="https://api.bilibili.com/x/v2/reply?&type=1&oid="+str(avId)
+        res=proxy.proxy_get(baseUrl)
+        print('baseUrl:'+baseUrl)
+        jsonDict=json.loads(res.text)
+        page=jsonDict['data']['page']
+        count=int(page['count'])
+        size=int(page['size'])
+        result=count/size+1
+        if result < max:
+            return int(result)
+        else:
+            return max
+    except:
+        logging.exception("message")
+        return 10
 # 获得合适的线程数，如果小于10，单线程
 # 大于十，进程数为 num//10
 # 上限为6

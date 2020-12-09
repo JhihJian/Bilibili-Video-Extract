@@ -201,6 +201,8 @@ def download_video(av,target_dir=r""):
 
     # 解析片段信息及视频 url
     for i, container in enumerate(containers):
+        container.path=os.path.join(video_dir, str(av)+".mp4")
+        print("container.path:"+container.path)
         print(
             "{:02}/{:02} parsing segments info...".format(i + 1, len(containers)), end="\r",
         )
