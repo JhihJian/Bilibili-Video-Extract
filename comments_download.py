@@ -216,6 +216,8 @@ def getTotal(avId,max=100):
         res=proxy.proxy_get(baseUrl)
         print('baseUrl:'+baseUrl)
         jsonDict=json.loads(res.text)
+        if jsonDict['data'] is None:
+            return 10
         page=jsonDict['data']['page']
         count=int(page['count'])
         size=int(page['size'])
