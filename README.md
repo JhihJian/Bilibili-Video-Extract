@@ -35,7 +35,7 @@ cd ../DockerFile
 
 docker build -t bili-extract:1.0.0 -f dockerFile .
 
-docker run --name bili -v /opt/video_download:/opt/video_download \
+docker run --name bili -v /home/jhihjian/video_download:/home/jhihjian/video_download \
 --network=host -it bili-extract /bin/bash
 
 python3 /opt/Bilibili-Video-Extract/main.py 

@@ -15,7 +15,7 @@ import comments_download
 import logging
 import json
 
-target_dir="/opt/video_download"
+target_dir="/home/jhihjian/video_download"
 data_path=r"av_set.txt"
 base_url="https://www.bilibili.com/video/av"
 ocr_input_dir="/opt/ocr-files/images"
